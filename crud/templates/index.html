@@ -1,0 +1,62 @@
+
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+    <div class="container">
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-xs-6">
+							<h2>Manage <b>Employees</b></h2>
+						</div>
+						
+					</div>
+				</div>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>
+								<span class="custom-checkbox">
+									<input type="checkbox" id="selectAll">
+									<label for="selectAll"></label>
+								</span>
+							</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Address</th>
+							<th>Phone</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+                        {% for crud in crud %}
+						<tr>
+                            
+							<td>
+								<span class="custom-checkbox">
+									<input type="checkbox" id="checkbox1" name="options[]" value="1">
+									<label for="checkbox1"></label>
+								</span>
+							</td>
+							<td>{{crud.name}}</td>
+							<td>{{crud.email}}</td>
+							<td>{{crud.adress}}</td>
+							<td>{{crud.phone}}</td>
+							<td>
+								<a href="{% url 'edit'  %}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+								<a href="{% url 'delete' crud.id %}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delate">&#xE872;</i></a>
+							</td>
+						</tr>				
+						{% endfor %}
+					</tbody>
+				</table>
+				
+			</div>
+		</div>        
+    </div>
+
+</body>
+{% endblock %}
